@@ -6,7 +6,7 @@
 /*   By: mmizuno <mmizuno@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 08:22:16 by mmizuno           #+#    #+#             */
-/*   Updated: 2022/04/16 11:26:45 by mmizuno          ###   ########.fr       */
+/*   Updated: 2022/04/16 14:29:01 by mmizuno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int main(void)
 {
     // ------------------------- [ test: default ] -------------------------- //
 
-    std::cout << "[ test: default ]" << std::endl;
+    std::cout << "---------- [ test: default ] ----------" << std::endl;
 
     Fixed a;
     Fixed b(a);
@@ -33,9 +33,11 @@ int main(void)
     std::cout << c.getRawBits() << std::endl;
     printf("pointer: %p\n", &c);
 
+    std::cout << "---------- ----------------- ----------" << std::endl;
+
     // // ------------------------ [ test: additional ] ------------------------ //
 
-    // std::cout << "[ test: additional ]" << std::endl;
+    // std::cout << "---------- [ test: additional ] ----------" << std::endl;
 
     // Fixed *d = new Fixed;
     // Fixed *e = new Fixed(*d);
@@ -53,6 +55,8 @@ int main(void)
     // delete d;
     // delete e;
     // delete f;
+
+    // std::cout << "---------- -------------------- ----------" << std::endl;
 
     // [ return ]
     return 0;
