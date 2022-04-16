@@ -6,7 +6,7 @@
 /*   By: mmizuno <mmizuno@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 08:22:30 by mmizuno           #+#    #+#             */
-/*   Updated: 2022/04/15 06:56:00 by mmizuno          ###   ########.fr       */
+/*   Updated: 2022/04/16 13:30:27 by mmizuno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,37 +24,34 @@ class Fixed
 {
     private:
         // [ variable ]
-        int                 _bits;
-        static const int    _frac = 8;
-        int                 _mask;
-
-        // [ method ]
-        void    _setValueFromInt(const int i);
-        void    _setValueFromFloat(const float f);
-        void    _setMask(void);
+        static const int    _fracLen = 8;
+        int                 _rawBits;
+ 
+        // [ setter / getter ]
+        void    _setValueFromInt(const int value);
         int     _getValueToInt(void) const;
+        void    _setValueFromFloat(const float value);
         float   _getValueToFloat(void) const;
 
     public:
         // [ constructor / destructor ]
         Fixed();
-        Fixed(const int i);
-        Fixed(const float f);
+        Fixed(const int value);
+        Fixed(const float value);
         Fixed(const Fixed &fixed);
         ~Fixed();
 
         // [ method ]
         int     toInt(void) const;
         float   toFloat(void) const;
-        bool    isInt(void) const;
 
         // [ operator ]
-        void    operator=(const int i);
-        void    operator=(const float f);
-        void    operator=(const Fixed &fixed);
+        Fixed   &operator=(const int value);
+        Fixed   &operator=(const float value);
+        Fixed   &operator=(const Fixed &fixed);
 
-        // [ getter / setter ]
-        void    setRawBits(int const raw);
+        // [ setter / getter ]
+        void    setRawBits(int const rawBits);
         int     getRawBits(void) const;
 };
 

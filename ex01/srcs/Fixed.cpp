@@ -6,7 +6,7 @@
 /*   By: mmizuno <mmizuno@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 08:22:23 by mmizuno           #+#    #+#             */
-/*   Updated: 2022/04/15 06:55:41 by mmizuno          ###   ########.fr       */
+/*   Updated: 2022/04/16 13:57:02 by mmizuno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,73 +14,72 @@
 
 // ======================= [ private ] setter / getter ====================== //
 
-void    Fixed::_setValueFromInt(const int i)
-{
-    _bits = i<<_frac;
-}
+// --------------------------- set/get int value ---------------------------- //
 
-void    Fixed::_setValueFromFloat(const float f)
+void    Fixed::_setValueFromInt(const int value)
 {
-    _bits = roundf(f * (1<<_frac));
-}
-
-void    Fixed::_setMask()
-{
-    for (int i = 0; i < _frac; i++) {
-        _mask |= 1<<i;
-    }
+    _rawBits = value << _fracLen;
 }
 
 int     Fixed::_getValueToInt() const
 {
-    return _bits>>_frac;
+    return _rawBits >> _fracLen;
+}
+
+// -------------------------- set/get float value --------------------------- //
+
+void    Fixed::_setValueFromFloat(const float value)
+{
+    _rawBits = roundf(value * (1 << _fracLen));
 }
 
 float   Fixed::_getValueToFloat() const
 {
-    return (float)_bits / (1<<_frac);
+    return (float)_rawBits / (1 << _fracLen);
 }
 
 // ================== [ public ] constructor / destructor =================== //
 
-// default constructor
+// -------------------------- default contsructor --------------------------- //
+
 Fixed::Fixed()
 {
     std::cout << "Default constructor called" << std::endl;
-    _bits = 0;
-    _setMask();
+    _rawBits = 0;
 }
 
-// converting constructor
-Fixed::Fixed(const int i)
+// ------------------------- conberting contsructor ------------------------- //
+
+Fixed::Fixed(const int value)
 {
     std::cout << "Int constructor called" << std::endl;
-    _setValueFromInt(i);
-    _setMask();
+    _setValueFromInt(value);
 }
 
-Fixed::Fixed(const float f)
+Fixed::Fixed(const float value)
 {
     std::cout << "Float constructor called" << std::endl;
-    _setValueFromFloat(f);
-    _setMask();
+    _setValueFromFloat(value);
 }
 
-// copy constructor
+// ---------------------------- copy contsructor ---------------------------- //
+
 Fixed::Fixed(const Fixed &fixed)
 {
     std::cout << "Copy constructor called" << std::endl;
-    _bits = fixed.getRawBits();
-    _setMask();
+    _rawBits = fixed.getRawBits();
 }
 
-// destructor
+// ------------------------------- destructor ------------------------------- //
+
 Fixed::~Fixed()
 {
     std::cout << "Destructor called" << std::endl;
 }
 
-// ========================== [ public ] operator =========================== //
+// =========================== [ public ] method ============================ //
+
+// ---------------------------- toInt / toFloat ----------------------------- //
 
 int     Fixed::toInt(void) const
 {
@@ -92,54 +91,57 @@ float   Fixed::toFloat(void) const
     return _getValueToFloat();
 }
 
-bool    Fixed::isInt(void) const
-{
-    if ((_bits & _mask) == 0)
-        return true;
-    return false;
-}
-
 // ========================== [ public ] operator =========================== //
 
-// assignment operator
-void    Fixed::operator=(const int i)
+// -------------------------- assignment operator --------------------------- //
+
+Fixed   &Fixed::operator=(const int value)
 {
     std::cout << "assignment operator called" << std::endl;
-    _setValueFromInt(i);
+    _setValueFromInt(value);
+    return *this;
 }
 
-void    Fixed::operator=(const float f)
+Fixed   &Fixed::operator=(const float value)
 {
     std::cout << "assignment operator called" << std::endl;
-    _setValueFromFloat(f);
+    _setValueFromFloat(value);
+    return *this;
 }
 
-// copy assignment operator
-void    Fixed::operator=(const Fixed &fixed)
+// ------------------------ copy assignment operator ------------------------ //
+
+Fixed   &Fixed::operator=(const Fixed &fixed)
 {
     std::cout << "Copy assignment operator called" << std::endl;
-    _bits = fixed.getRawBits();
+    if (this != &fixed) {
+        _rawBits = fixed.getRawBits();
+    }
+    return *this;
 }
 
-// stream operator
+// ========================== [ global ] operator =========================== //
+
+// ---------------------------- stream operator ----------------------------- //
+
 std::ostream    &operator<<(std::ostream &os, const Fixed &fixed)
 {
-    if (fixed.isInt())
-        os << fixed.toInt();
-    else
-        os << fixed.toFloat();
-    
+    os << fixed.toFloat();
     return os;
 }
 
 // ======================= [ public ] setter / getter ======================= //
 
-void    Fixed::setRawBits(int const raw)
+// ---------------------------- set/get rawBits ----------------------------- //
+
+void    Fixed::setRawBits(int const rawBits)
 {
-     _bits = raw;
+    // std::cout << "setRawBits member function called" << std::endl;
+    _rawBits = rawBits;
 }
 
 int     Fixed::getRawBits(void) const
 {
-    return _bits;
+    // std::cout << "getRawBits member function called" << std::endl;
+    return _rawBits;
 }
