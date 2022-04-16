@@ -6,7 +6,7 @@
 /*   By: mmizuno <mmizuno@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 08:22:23 by mmizuno           #+#    #+#             */
-/*   Updated: 2022/04/15 07:02:36 by mmizuno          ###   ########.fr       */
+/*   Updated: 2022/04/16 11:46:10 by mmizuno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,14 @@
 Fixed::Fixed()
 {
     std::cout << "Default constructor called" << std::endl;
-    _bits = 0;
-}
-
-// converting constructor
-Fixed::Fixed(const int i)
-{
-    std::cout << "Converting constructor called" << std::endl;
-    _bits = i;
+    this->_rawBits = 0;
 }
 
 // copy constructor
 Fixed::Fixed(const Fixed &fixed)
 {
     std::cout << "Copy constructor called" << std::endl;
-    _bits = fixed.getRawBits();
+    this->_rawBits = fixed.getRawBits();
 }
 
 // destructor
@@ -43,30 +36,26 @@ Fixed::~Fixed()
 
 // ========================== [ public ] operator =========================== //
 
-// assignment operator
-void    Fixed::operator=(const int i)
-{
-    std::cout << "assignment operator called" << std::endl;
-    _bits = i;
-}
-
 // copy assignment operator
-void    Fixed::operator=(const Fixed &fixed)
+Fixed   &Fixed::operator=(const Fixed &fixed)
 {
     std::cout << "Copy assignment operator called" << std::endl;
-    _bits = fixed.getRawBits();
+    if (this != &fixed) {
+        this->_rawBits = fixed.getRawBits();
+    }
+    return *this;
 }
 
 // ======================= [ public ] setter / getter ======================= //
 
-void    Fixed::setRawBits(int const raw)
+void    Fixed::setRawBits(int const rawBits)
 {
     std::cout << "setRawBits member function called" << std::endl;
-    _bits = raw;
+    this->_rawBits = rawBits;
 }
 
 int     Fixed::getRawBits(void) const
 {
     std::cout << "getRawBits member function called" << std::endl;
-    return _bits;
+    return this->_rawBits;
 }
