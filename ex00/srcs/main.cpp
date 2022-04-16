@@ -6,7 +6,7 @@
 /*   By: mmizuno <mmizuno@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 08:22:16 by mmizuno           #+#    #+#             */
-/*   Updated: 2022/04/16 14:29:01 by mmizuno          ###   ########.fr       */
+/*   Updated: 2022/04/16 20:33:30 by mmizuno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 
 int main(void)
 {
-    // ------------------------- [ test: default ] -------------------------- //
+    // --------------------- [ test: default (static) ] --------------------- //
 
-    std::cout << "---------- [ test: default ] ----------" << std::endl;
+    std::cout << "---------- [ test: default (static) ] ----------" << std::endl;
 
     Fixed a;
     Fixed b(a);
@@ -33,30 +33,30 @@ int main(void)
     std::cout << c.getRawBits() << std::endl;
     printf("pointer: %p\n", &c);
 
-    std::cout << "---------- ----------------- ----------" << std::endl;
+    std::cout << "---------- -------------------------- ----------" << std::endl;
 
-    // // ------------------------ [ test: additional ] ------------------------ //
+    // -------------------- [ test: default (dynamic) ] --------------------- //
 
-    // std::cout << "---------- [ test: additional ] ----------" << std::endl;
+    std::cout << "---------- [ test: default (dynamic) ] ----------" << std::endl;
 
-    // Fixed *d = new Fixed;
-    // Fixed *e = new Fixed(*d);
-    // Fixed *f = new Fixed;
+    Fixed *d = new Fixed;
+    Fixed *e = new Fixed(*d);
+    Fixed *f = new Fixed;
 
-    // *f = *e;
+    *f = *e;
 
-    // std::cout << d->getRawBits() << std::endl;
-    // printf("pointer: %p\n", &d);
-    // std::cout << e->getRawBits() << std::endl;
-    // printf("pointer: %p\n", &e);
-    // std::cout << f->getRawBits() << std::endl;
-    // printf("pointer: %p\n", &f);
+    std::cout << d->getRawBits() << std::endl;
+    printf("pointer: %p\n", &d);
+    std::cout << e->getRawBits() << std::endl;
+    printf("pointer: %p\n", &e);
+    std::cout << f->getRawBits() << std::endl;
+    printf("pointer: %p\n", &f);
 
-    // delete d;
-    // delete e;
-    // delete f;
+    delete d;
+    delete e;
+    delete f;
 
-    // std::cout << "---------- -------------------- ----------" << std::endl;
+    std::cout << "---------- --------------------------- ----------" << std::endl;
 
     // [ return ]
     return 0;
