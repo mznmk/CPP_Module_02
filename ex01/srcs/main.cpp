@@ -6,7 +6,7 @@
 /*   By: mmizuno <mmizuno@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 08:22:16 by mmizuno           #+#    #+#             */
-/*   Updated: 2022/04/16 14:24:09 by mmizuno          ###   ########.fr       */
+/*   Updated: 2022/04/16 20:31:50 by mmizuno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 
 int main(void)
 {
-    // ------------------------- [ test: default ] -------------------------- //
+    // --------------------- [ test: default (static) ] --------------------- //
 
-    std::cout << "---------- [ test: default ] ----------" << std::endl;
+    std::cout << "---------- [ test: default (static) ] ----------" << std::endl;
 
     Fixed       a;
     Fixed const b(10);
@@ -37,53 +37,53 @@ int main(void)
     std::cout << "c is " << c.toInt() << " as integer" << std::endl;
     std::cout << "d is " << d.toInt() << " as integer" << std::endl;
 
-    std::cout << "---------- ----------------- ----------" << std::endl;
+    std::cout << "---------- -------------------------- ----------" << std::endl;
 
-    // // ------------------------ [ test: additional ] ------------------------ //
+    // -------------------- [ test: default (dynamic) ] --------------------- //
 
-    // std::cout << "---------- [ test: additional ] ----------" << std::endl;
+    std::cout << "---------- [ test: default (dynamic) ] ----------" << std::endl;
 
-    // Fixed       *e = new Fixed;
-    // Fixed const *f = new Fixed(10);
-    // Fixed const *g = new Fixed(42.42f);
-    // Fixed const *h = new Fixed(*f);
+    Fixed       *e = new Fixed;
+    Fixed const *f = new Fixed(10);
+    Fixed const *g = new Fixed(42.42f);
+    Fixed const *h = new Fixed(*f);
 
-    // *e = Fixed(1234.4321f);
+    *e = Fixed(1234.4321f);
 
-    // std::cout << "e is " << *e << std::endl;
-    // std::cout << "f is " << *f << std::endl;
-    // std::cout << "g is " << *g << std::endl;
-    // std::cout << "h is " << *h << std::endl;
+    std::cout << "e is " << *e << std::endl;
+    std::cout << "f is " << *f << std::endl;
+    std::cout << "g is " << *g << std::endl;
+    std::cout << "h is " << *h << std::endl;
 
-    // std::cout << "e is " << (*e).toInt() << " as integer" << std::endl;
-    // std::cout << "f is " << (*f).toInt() << " as integer" << std::endl;
-    // std::cout << "g is " << (*g).toInt() << " as integer" << std::endl;
-    // std::cout << "h is " << (*h).toInt() << " as integer" << std::endl;
+    std::cout << "e is " << (*e).toInt() << " as integer" << std::endl;
+    std::cout << "f is " << (*f).toInt() << " as integer" << std::endl;
+    std::cout << "g is " << (*g).toInt() << " as integer" << std::endl;
+    std::cout << "h is " << (*h).toInt() << " as integer" << std::endl;
 
-    // delete e;
-    // delete f;
-    // delete g;
-    // delete h;
+    delete e;
+    delete f;
+    delete g;
+    delete h;
 
-    // std::cout << "---------- -------------------- ----------" << std::endl;
+    std::cout << "---------- --------------------------- ----------" << std::endl;
 
-    // // ------------------------ [ test: extra ] ------------------------ //
+    // ------------------------ [ test: additional ] ------------------------ //
 
-    // std::cout << "---------- [ test: extra ] ----------" << std::endl;
+    std::cout << "---------- [ test: additional ] ----------" << std::endl;
 
-    // Fixed i;
-    // Fixed j;
+    Fixed i;
+    Fixed j;
 
-    // i = -42;
-    // j = -42.42f;
+    i = -42;
+    j = -42.42f;
 
-    // std::cout << i << std::endl;
-    // std::cout << j << std::endl;
+    std::cout << i << std::endl;
+    std::cout << j << std::endl;
 
-    // std::cout << i.toInt() << std::endl;
-    // std::cout << j.toInt() << std::endl;
+    std::cout << i.toInt() << std::endl;
+    std::cout << j.toInt() << std::endl;
 
-    // std::cout << "---------- --------------- ----------" << std::endl;
+    std::cout << "---------- -------------------- ----------" << std::endl;
 
     // [ return ]
     return 0;
